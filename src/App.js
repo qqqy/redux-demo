@@ -1,26 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {connect} from 'react-redux';
+import {changeProps} from './redux/reducer';
 
-function App() {
+function App(props) {
+  console.log("App Mounted:", props)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>Open your Console</>
   );
 }
 
-export default App;
+export default connect(state => state, {changeProps})(App);
+
+
+// -- TO BREAK APART THAT LAST LINE, WE COULD ALSO DO IT THIS WAY --
+
+// function mapStateToProps (state){
+//   const {props} = state
+//   return {props}
+// }
+
+// const mapDispatchToProps = {
+//   changeProps: changeProps
+// }
+
+// -- BELOW IS THE FUNCTION THAT INJECTS PROPS INTO APP BEFORE RENDERING IT --
+
+// const connectBabyFunction = connect(mapStateToProps, mapDispatchToProps);
+
+// export default connectBabyFunction(App);
